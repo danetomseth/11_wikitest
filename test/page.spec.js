@@ -57,7 +57,6 @@ describe('A test of Page models', function() {
                 page.title = 'ourTitle';
                 page.content = 'whatever';
             });
-
             it('sets the Url to be set after the page is validated', function(done) {
             	var urlBeforeValidation = page.urlTitle
                 page.validate(function() {
@@ -65,19 +64,11 @@ describe('A test of Page models', function() {
                 	done();
                 })
             });
-            xit('it should not set the url on a unvalid title', function(done) {
-                page.title = null;
-                console.log(page.urlTitle)
+            it('the url should not contain any whitespaces', function(done) {
                 page.validate(function(err) {
-                	console.log(page.urlTitle)
-                	//expect(page.urlTitle).to.be.a('string');
-                	done();
+                    expect(page.urlTitle.match(/\s/g)).to.eql(null);
+                    done();
                 })
-            });
-            xit('the url should not contain any whitespaces', function() {
-
-            });
-            xit('Errors: If no title is supplied, xit generates a random one', function() {
 
             });
         });
